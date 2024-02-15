@@ -6,3 +6,9 @@
     <TheWelcome />
   </main>
 </template>
+
+<style>
+html {
+  font-size: xx-large;
+}
+</style>

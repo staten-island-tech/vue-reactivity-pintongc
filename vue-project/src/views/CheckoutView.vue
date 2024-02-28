@@ -5,7 +5,7 @@
       <div class="payment">Select payment methods</div>
       <div class="items-table">
         <div class="item">
-          <div class="delete-btn"></div>
+          <div class="delete-btn"><button class="delete-btn">Delete</button></div>
           <div class="quantity"></div>
           <div class="desc"></div>
           <div class="title"></div>

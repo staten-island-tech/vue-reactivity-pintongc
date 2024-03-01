@@ -5,10 +5,12 @@
       <div class="payment">Select payment methods</div>
       <div class="items-table">
         <div class="item">
-          <div class="delete-btn"><button class="delete-btn">Delete</button></div>
-          <div class="quantity"></div>
-          <div class="desc"></div>
-          <div class="title"></div>
+          <div class="delete-btn"><button @click="" class="delete-btn">Delete</button></div>
+          <div class="quantity">5x</div>
+          <div class="desc">Brief item description</div>
+          <div class="title">Item</div>
+          <div class="item-img"><img src="" alt="" srcset=""></div>
+          <list-item></list-item>
         </div>
       </div>
     </div>
@@ -30,3 +32,16 @@
   }
   </style>
   
+  <script>
+  
+createList({
+components: {
+  ListItem
+},
+  setup() {
+    
+  }
+})
+
+
+  </script>

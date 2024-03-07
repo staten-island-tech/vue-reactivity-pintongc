@@ -1,47 +1,27 @@
 <template>
-    <div class="checkout">
-      <h1>This is a checkout page</h1>
-      <div>Total:</div>
-      <div class="payment">Select payment methods</div>
-      <div class="items-table">
-        <div class="item">
-          <div class="delete-btn"><button @click="" class="delete-btn">Delete</button></div>
-          <div class="quantity">5x</div>
-          <div class="desc">Brief item description</div>
-          <div class="title">Item</div>
-          <div class="item-img"><img src="" alt="" srcset=""></div>
-          <list-item></list-item>
+  <div>
+    <div v-for="item in cart">
+      <div class="cart-item">
+        <div class="item-info">
+          <div>{{ item.name }}</div>
+          <div>{{ item.price }}</div>
         </div>
+        <button @click="removeFromCart(item)">Remove</button>
       </div>
     </div>
-  </template>
-  
-  <style>
-  @media (min-width: 1024px) {
-    .cart {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-    }
-    html {
-      font-size: xx-large;
-    }
-    h1 {
-      font-size: xx-large;
-    }
-  }
-  </style>
-  
-  <script>
-  
-createList({
-components: {
-  ListItem
-},
-  setup() {
-    
-  }
-})
+    <div>Total Price: {{ calculateTotalPrice() }}</div>
+  </div>
+</template>
 
+<script setup>
+import { ref } from 'vue';
+import { computed } from 'vue';
 
-  </script>
+const removeFromCart = (index) => {
+  cart.value.splice(index, 1);
+};
+
+const calculateTotalPrice = computed(() => {
+  return cart.value.reduce((total, item) => total + item.price, 0);
+});
+</script>

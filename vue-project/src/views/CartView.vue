@@ -11,17 +11,19 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+
 export default {
   props: ['cartItems'],
   methods: {
     removeItem(index) {
-      this.$emit('removeItem', index);
+      this.$emit('removeItem', index)
     },
     calculateTotalPrice() {
-      return this.cartItems.reduce((total, item) => total + item.price, 0);
+      return this.cartItems.reduce((total, item) => total + item.price, 0)
     }
   }
-};
+}
 </script>
 
 <style>

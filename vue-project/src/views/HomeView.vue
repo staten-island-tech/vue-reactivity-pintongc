@@ -13,6 +13,16 @@
       </div>
     </div>
   </div>
+  <div class="cart">
+    <h2>Shopping Cart</h2>
+    <ul>
+      <li v-for="item in cartItems" :key="item.id">
+        {{ item.name }} - ${{ item.price }}
+        <button @click="removeFromCart(item)">Remove</button>
+      </li>
+    </ul>
+    <div>Total Price: ${{ calculateTotalPrice() }}</div>
+  </div>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -91,14 +101,23 @@ export default {
           price: 249,
           image: 'https://m.media-amazon.com/images/I/51OoKCakCfL._AC_UF350,350_QL80_.jpg'
         }
-      ]
+      ],
+      cartItems: []
+    }
+  },
+  methods: {
+    addToCart(item) {
+      const id = this.cartItems.length + 1
+      const newItem = { id, name: item.item, price: item.price }
+      this.cartItems.push(newItem)
+    },
+    removeFromCart(item) {
+      this.cartItems = this.cartItems.filter((cartItem) => cartItem.id !== item.id)
+    },
+    calculateTotalPrice() {
+      return this.cartItems.reduce((total, item) => total + item.price, 0)
     }
   }
-}
-
-const cart = ref([])
-const addToCart = (item) => {
-  cart.value.push(item)
 }
 </script>
 
@@ -131,12 +150,6 @@ const addToCart = (item) => {
   font-size: 1rem;
 }
 
-.card-title {
-  margin: 5px;
-  font-size: 2rem;
-  text-align: center;
-}
-
 .card-description {
   font-size: 1rem;
   text-align: center;
@@ -149,9 +162,51 @@ const addToCart = (item) => {
 
 img {
   max-width: 80%;
-  max-height: 100%;
+  max-height: 70%;
   border-radius: 15px;
   object-fit: cover;
   margin-bottom: 1px;
+}
+
+.header {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.cart {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.header {
+  font-size: 60px;
+  text-align: center;
+  border-bottom: black solid 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 9rem;
 }
 </style>

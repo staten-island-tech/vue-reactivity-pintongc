@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <router-link class="home-btn" to="/">Home </router-link>
-    <router-link class="checkout=btn" to="/checkout">Checkout</router-link>
     <router-view></router-view>
   </div>
 </template>
